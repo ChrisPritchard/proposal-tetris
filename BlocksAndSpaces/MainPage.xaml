@@ -1,0 +1,74 @@
+﻿<Page
+    x:Class="BlocksAndSpaces.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BlocksAndSpaces"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:canvas="using:Microsoft.Graphics.Canvas.UI.Xaml"
+    mc:Ignorable="d"
+    Background="LightGray"
+    Foreground="Black"
+    FontFamily="/Assets/Fonts/coders_crux.ttf#Coder%27s Crux">
+
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Width" Value="100" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+        <Style TargetType="StackPanel">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="FontSize" Value="30" />
+        </Style>
+        <Style TargetType="RepeatButton">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Interval" Value="100" />
+            <Setter Property="FontSize" Value="30" />
+        </Style>
+    </Page.Resources>
+    
+    <Grid>
+        <StackPanel>
+            <TextBlock x:Name="Level" Text="Level 1" FontSize="40" Width="300" />
+            <Border BorderBrush="Black" BorderThickness="1" Width="262" Height="470">
+                <canvas:CanvasAnimatedControl 
+                    x:Name="Canvas"
+                    CreateResources="Canvas_CreateResources"
+                    Update="Canvas_Update"
+                    Draw="Canvas_Draw"
+                    Width="260" Height="468"/>
+            </Border>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <RepeatButton Content="3" x:Name="LeftButton" Click="Button_Click" FontFamily="Webdings" />
+                    <Button Content="q" x:Name="RotateButton" Click="Button_Click" FontFamily="Webdings" />
+                    <RepeatButton Content="4" x:Name="RightButton" Click="Button_Click" FontFamily="Webdings" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="Score" Text="0 points" />
+                    <Button Content="6" x:Name="Down" FontFamily="Webdings" />
+                    <TextBlock x:Name="LineCount" Text="0 lines" />
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel x:Name="GameOver" Visibility="Collapsed"
+                    VerticalAlignment="Center" Background="Red">
+            <TextBlock Text="Game Over!" 
+                       FontSize="40" 
+                       Width="200" 
+                       Margin="10"/>
+            <Button Content="Play again?" FontFamily="/Assets/Fonts/coders_crux.ttf#Coder%27s Crux" 
+                    HorizontalAlignment="Center" Click="Restart_Click" />
+        </StackPanel>
+    </Grid>
+</Page>

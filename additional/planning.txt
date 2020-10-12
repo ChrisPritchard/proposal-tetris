@@ -1,0 +1,55 @@
+Map size: 10x40?
+One of seven blocks spawned. Each tick, it drops by one block. When it can no longer fall, the next block is spawned.
+When a block stops, before the next block is spawned, a check is made for complete lines. If found they are removed and the players score incremented. Once removed, the line above falls to fill the space.
+
+The player can press a key to spin a block
+
+game loop is needed, plus a way to track the current block fill.
+
+map
+  tiles - x,y,colour?
+  shape - x,y,orientation
+  
+on update...
+  can move shape down?
+   - move shape down
+  else
+    check for full lines
+    remove lines, increment score
+    drop to fill lines
+  Can spawn?
+   - spawn new shape
+  else
+    game ends
+
+A map is a grid of xy. Rendering goes through the map and if it finds a tile, renders that tile.
+Or, a map is a set of tiles. The view is cleared, then each tile is rendered in its position.
+A shape contains references to tiles. When a shape is rotated, or falls, it updates all the tiles in its collection.
+A tile has an x and a y - it may use just a point object.
+A utility is needed to check if a given space is occupied: when falling, or when rotating, tiles cannot rotate into other tiles.
+Shapes being rotated must have a new pattern (or transform?) to apply to its tiles. All its tiles have their new position checked, and if any fail the rotation is not possible.
+A shape definition could be a set of transforms, with the initial transform applied to create the tiles at their initial position on the top of the board.
+E.g.
+	Line:
+		-2,0 -1,0 0,0 1,0 (horizontal)
+		0,-2 0,-1 0,0 0,1 (vertical)
+	Square:
+		-1,0 0,0 1,0 1,1 (single shape)
+	S-shape:
+		-1,1 0,1 0,0 1,0 (s)
+		0,-1 0,0 1,0 1,1 (upwards s)
+It could be that the current transformation index is used to find the shape's tiles, so that no explicit reference is required. This might be pointless however.
+The shape does need to maintain its origin position.
+
+On a shape being unable to move/fall, each of its tiles (on distinct lines) is tested for full lines. 
+Full lines are collected, the shape entity is discarded, the lines are removed, before a new shape is created.
+
+So, active data structures and entities:
+	A collection of shape templates, with transformations
+	A shape instance, with a template and an origin point.
+	A set of tiles that represent the map.
+	On render, all tiles are drawn.
+	On an interval (from draw? or from a timer?) the game logic is evaluated:
+		Input is checked for left, right, rotate and drop.
+		The shape is dropped / rotated
+		If necessary, line removal is checked/run and a new shape is selected/spawned.
