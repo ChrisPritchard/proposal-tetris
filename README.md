@@ -2,10 +2,17 @@
 
 A tetris clone I used to surprise propose to my Wife.
 
-**NOTE: This is an old project (well, like five/six years prior to writing), written in XAML and a beta version of the Win2D graphics library - it will likely be very hard to compile. It was also written in Visual Studio 2013.**
+**NOTE: This is an old project (well, like five/six years prior to writing), written in XAML and a beta version of the Win2D graphics library - it will likely be very hard to compile. It was also written in Visual Studio 2013. Finally, it was built to run on a Windows Phone, a now defunct platform.**
 
 
-How does it work? Its standard tetris - I had my girlfriend at the time testing it for me, as she likes tetris. She made some suggestions on how the controls would work better. I waited a week, fixed up the controls with her suggestions, and added the 'secret': when she passed the first level, it dropped a custom block with 'Will you marry me?' written on it, while the wedding march played in the background :) While she was absorbing that I presented the ring and a bottle of champaign. Not tooo bad, if I say so myself :D
+How does it work? 
+
+1. Its standard tetris - I had my girlfriend at the time testing it for me on her phone, as she likes tetris. 
+2. She made some suggestions on how the controls would work better. 
+3. I waited a week, fixed up the controls with her suggestions, and added the 'secret': when she passed the first level, it dropped a custom block with 'Will you marry me?' written on it, while the wedding march played in the background :) 
+4. While she was absorbing that I presented the ring and a bottle of champaign. 
+
+Not tooo bad, if I say so myself :D
 
 ## Re-use
 
